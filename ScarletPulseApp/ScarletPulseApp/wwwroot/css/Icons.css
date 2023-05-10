@@ -1,0 +1,16 @@
+﻿@font-face {
+    font-family: 'Icomoon';
+    src: url('./open-iconic/font/fonts/IcoMoon-Free.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'IconPack';
+    src: url('./open-iconic/font/fonts/IconPack.ttf') format('truetype');
+}
+
+.icon-icomoon{
+    font-family: 'Icomoon' !important;
+}
+.icon-pack {
+    font-family: 'IconPack' !important;
+}

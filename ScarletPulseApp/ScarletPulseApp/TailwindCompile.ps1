@@ -1,0 +1,1 @@
+﻿npx tailwindcss -i ./wwwroot/Tailwind.css -o ./wwwroot/appTailwind.css --watch

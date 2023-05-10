@@ -1,0 +1,42 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <main>
+        <div class="z-40 relative text-white w-full h-fit min-h-[1.75rem] bg-blue rounded-b-xl pt-4 pb-2 px-4 grid grid-cols-2">
+            <a href="/" class="text-4xl w-fit"><span class="icon-pack">@("\ue900")</span>Back</a>
+
+            <div class="flex justify-end">
+                <a class="text-5xl icon-pack text-right">@("\ue90c")</a> <!--Lang-->
+                <a class="text-[2.15rem] icon-pack text-right">@("\ue90a")</a> <!--Settings-->
+            </div>
+        </div>
+        <div class="z-30 relative text-white w-full h-fit min-h-[4.5rem] bg-cyan rounded-b-xl mt-[-1.5rem] pt-[1.5rem]">
+            <div class="w-fit px-6 grid grid-cols-4">
+                <p class="icon-pack text-5xl">@icon</p>
+                <p class="text-4xl col-span-3">@name</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 scroll-smooth scroll-my-8 justify-items-center p-4">
+                @Body
+            <div class="bg-skyblue w-[90%] h-[0.3vh] mt-4"></div>
+            <div class="bg-skyblue w-[65%] h-[0.3vh] mt-4"></div>
+            <div class="bg-skyblue w-[40%] h-[0.3vh] mt-4"></div>
+        </div>
+    </main>
+</div>
+@code{
+    public string name = AppState.Name;
+    public string icon = AppState.Icon;
+
+    protected override void OnInitialized() {
+        var timer = new System.Timers.Timer(100);
+        timer.Elapsed += (a, b) =>{
+            InvokeAsync(() =>{
+                name = AppState.Name;
+                icon = AppState.Icon;
+                StateHasChanged();
+            });
+        };        
+        timer.Start();
+    }
+}

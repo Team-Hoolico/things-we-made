@@ -1,0 +1,91 @@
+﻿@page "/"
+@inject NavigationManager navMan
+<!--navMan is a super hero who navigates *gasp* -->
+
+<div class=""> <!--Navbar-->
+    <div class="z-40 relative text-white bg-crimson w-full h-fit grid grid-rows-2 rounded-b-xl px-4 pt-4 pb-2">
+        <div>
+            <!-- Greeting messages-->
+            <h1 class="text-center text-xl">@($"Good {DateTimeFunctions.GetGreeting()},\n user")</h1>
+            <div class="absolute justify-items-right text-right grid grid-cols-1 top-1 right-2">
+                <a class="text-5xl icon-pack text-right">@("\ue90a")</a>  <!--Settings-->
+                <a class="text-5xl icon-pack text-right">@("\ue90c")</a>  <!--Lang-->
+            </div>
+        </div>
+        <div class="flex h-fit row-start-2 row-span-2 justify-center">
+            <!--Main buttons-->
+            <div class="flex h-fit grid grid-cols-3 gap-4 w-[80%] justify-items-center">
+                <a href="/Blood" class="text-7xl icon-pack">@("\ue901")<div class="absolute text-xl pt-16">AB+</div></a> <!--Blood-->
+                <a href="/Profile" class="text-7xl icon-pack">@("\ue906")</a> <!--User-->
+                <a href="/Notifications" class="text-7xl icon-pack">@("\ue905")</a> <!--Notification-->
+            </div>
+        </div>
+        <br/>
+    </div>
+    <div class="z-30 relative text-white bg-coral w-full h-fit min-h-[3rem] rounded-b-xl mt-[-1.5rem]">
+        @if (mainMenuItems.Length>0){
+        <a href="@mainMenuItems[0].Link">
+            <div class="w-full h-36 snap-center py-4 px-4 grid grid-cols-8 pt-[1.25rem]">
+                <div class="flex justify-center col-span-2 w-full h-full pt-2">
+                    <img src="@mainMenuItems[0].IconPath" class="object-contain h-28 invert"/>
+                </div>
+                <h1 class="flex flex-wrap col-span-6 text-xl content-center break-all">@mainMenuItems[0].Title</h1>
+            </div>
+        </a>
+        }
+    </div>
+    <div class="z-20 relative text-white bg-rose w-full h-fit min-h-[3rem] rounded-b-xl mt-[-1.5rem]">
+        @if (mainMenuItems.Length>1){
+        <a href="@mainMenuItems[1].Link">
+            <div class="w-full h-36 snap-center py-4 px-4 grid grid-cols-8 pt-[1.25rem]">
+                    <div class="flex justify-center col-span-2 w-full h-full pt-2">
+                    <img src="@mainMenuItems[1].IconPath" class="object-contain h-28 invert" />
+                </div>
+                <h1 class="flex flex-wrap col-span-6 text-xl content-center break-all">@mainMenuItems[1].Title</h1>
+            </div>
+        </a>
+        }
+    </div>
+    <div class="z-10 relative text-white bg-pink w-full h-fit min-h-[3rem] rounded-b-xl mt-[-1.5rem]">
+        @if (mainMenuItems.Length>2){
+        <a href="@mainMenuItems[2].Link">
+            <div class="w-full h-36 snap-center py-4 px-4 grid grid-cols-8 pt-[1.25rem]">
+                <div class="flex justify-center col-span-2 w-full h-full pt-2">
+                    <img src="@mainMenuItems[2].IconPath" class="object-contain h-28 invert"/>
+                </div>
+                <h1 class="flex flex-wrap col-span-6 text-xl content-center break-all">@mainMenuItems[2].Title</h1>
+            </div>
+        </a>
+        }
+    </div>
+</div>
+<div class="grid grid-cols-1 scroll-smooth scroll-my-8 justify-items-center p-4 gap-6 mb-16">
+    @foreach (MenuItems menuitem in menuItems) {
+        <a class="w-full h-32" href="@menuitem.Link">
+        <div class="w-full h-32 snap-center px-2 grid grid-cols-8">
+            <div class="flex justify-center col-span-2 w-full h-full">
+                <img src="@menuitem.IconPath" class="object-contain h-32"/>
+            </div>
+            <h1 class="flex flex-wrap col-span-6 text-xl content-center break-words">@menuitem.Title</h1>
+        </div>
+    </a>
+        <div class="bg-skyblue w-[90%] h-[0.3vh]"></div>
+    }
+    <div class="bg-skyblue w-[65%] h-[0.3vh] mt-1"></div>
+    <div class="bg-skyblue w-[40%] h-[0.3vh] mt-1"></div>
+</div>
+
+@code{
+    private MenuItems[] menuItems = new[] {
+        new MenuItems(@"/icons/backward.svg","test hahaha","/"),
+        new MenuItems(@"/icons/question_mark.svg","Want to learn more about being a donor?","/"),
+        new MenuItems(@"/icons/maps.svg","Want to help? Check out when and where you can","/"),
+        new MenuItems(@"/icons/point_shop.svg","Check out our offers for your generosity","/"),
+        new MenuItems(@"/icons/history.svg","You can find your donation history here","/"),
+    };
+    public MenuItems[] mainMenuItems = new[] {
+        new MenuItems(@"/icons/droplet.svg","BloodMissing","/"),
+        new MenuItems(@"/icons/results.svg","Your results are ready","/"),
+    };
+
+}
